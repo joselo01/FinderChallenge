@@ -1,0 +1,61 @@
+doctype html
+html(lang="es")
+    head
+        title Finder challenge
+        meta(charset="utf-8")
+        meta(viewport="width=device-width, initial-scale=1.0")
+        link(href="https://fonts.googleapis.com/css?family=Proxima+Nova", rel="stylesheet", type="text/css")
+        link(href="/vendor/pure/pure-min.css", rel="stylesheet")
+        link(href="/styles/index.css", rel="stylesheet")
+
+    body
+        .app.pure-g
+            header.pure-u-1
+                .pure-u-1-3
+                    h1.logo Finder challenge
+                .pure-u-11-24
+                    include blocks/search-form
+                .pure-u-1-3
+            aside.filters.pure-u-1-4
+                div.busqueda
+                   h2 Búsquedas Guardadas
+                   ul#busqueda
+                      li
+                      
+                div.categoria
+                   h2 Categorías
+                   ul#categoria
+                      li(id="cTodos") Todos
+                      
+                div.idioma
+                   h2 Idiomas
+                   ul#idioma
+                      li(id="iTodos") Todos
+                      
+                div.publicacion
+                   h2 Publicación
+                   ul#publicacion
+                      li Todos
+                      li Hoy
+                      li Hace una semana
+                      li Hace un mes
+                      li Hace un año
+                div.presentacion
+                   h2 Presentación
+                   ul#presentacion
+                  
+                      
+            content.pure-u-3-4
+               
+                            
+            footer.pure-u-1
+
+        //- third party libraries
+        script(src="/vendor/jquery/jquery.custom.js")
+        script(src="/vendor/underscore/underscore-min.js")
+
+
+        //- app scripts self
+        script(src="/scripts/global.js")
+        script(src="/scripts/search-form.js")
+        script(src="/scripts/app.js")

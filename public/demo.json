@@ -1,0 +1,19 @@
+{
+	"entities": {
+		"categories": [
+		{
+			"horror": {
+				"id": 1,
+				"label": "Terror"
+			},
+			"comedy": {
+				"id": 2,
+				"label": "Comedia"
+			},
+			"drama": {
+				"id": 3,
+				"label": "Drama"
+			}
+		}]
+	}
+}
