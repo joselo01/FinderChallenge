@@ -1,21 +1,26 @@
 $(document).ready( function() {
 $.getJSON("/books-schema.json",
+
+
 		/* MENUS */
 function(data) {
+
 		$.each(data.entities.categories[0], function(i, item) {
-      //$('#categoria').append($('<li>').attr('id', item.id).html(item.label));
-      $('#categoria').append($('<li>').attr('id', (item.label).toLowerCase()).html(item.label));
+      $('#categoria').append($('<li>').attr('id', (item.label).toLowerCase().replace(/[^-A-Za-z0-9]+/g, '-')).html(item.label));
   });
 
     $.each(data.entities.lang[0], function(i, item) {
-    	$('#idioma').append($('<li>').attr('id', item.id).html(item.label));	
+      $('#idioma').append($('<li>').attr('id', (item.label).toLowerCase().replace(/[^-A-Za-z0-9]+/g, '-')).html(item.label));
   });
 		$.each(data.entities.edition[0], function(i, item) {
-    	$('#presentacion').append($('<li>').attr('id', item.id).html(item.label));	
+      $('#presentacion').append($('<li>').attr('id', (item.label).toLowerCase().replace(/[^-A-Za-z0-9]+/g, '-')).html(item.label));
   });
 		$.each(data.entities.saved, function(i, item) {
     	$("<li>").html(item.label).appendTo("#busqueda");	
   });
+
+
+
 
 		/* FIN MENUS */
 	
@@ -76,6 +81,7 @@ $.getJSON("/books-schema.json", function(data) {
       /* FILTRO POR CATEGORIA */
     $('#cTodos').on('click', function() {
 
+      window.location ='/';
       var projectHTML = '<ul id="resultado">';
       $.each(data.data, function(i, item) {
         projectHTML += '<li>';
@@ -93,6 +99,7 @@ $.getJSON("/books-schema.json", function(data) {
 
 
     $('#terror').on('click', function() {
+      window.location.hash='/terror';
       var projectHTML = '<ul id="resultado">';
       var peliculas_de_horror = filtrar_por_categoria(data.data,'horror');
       $.each(peliculas_de_horror, function(i, item) {
@@ -109,7 +116,7 @@ $.getJSON("/books-schema.json", function(data) {
     });
 
     $('#comedia').on('click', function() {
-
+      window.location.hash='/comedia';
       var projectHTML = '<ul id="resultado">';
       var peliculas_de_comedia = filtrar_por_categoria(data.data,'comedy');
       $.each(peliculas_de_comedia, function(i, item) {
@@ -126,7 +133,7 @@ $.getJSON("/books-schema.json", function(data) {
     });
 
     $('#drama').on('click', function() {
-
+      window.location.hash='/drama';
       var projectHTML = '<ul id="resultado">';
       var peliculas_de_drama = filtrar_por_categoria(data.data,'drama');
       $.each(peliculas_de_drama, function(i, item) {
@@ -149,7 +156,7 @@ $.getJSON("/books-schema.json", function(data) {
 
 
      $('#iTodos').on('click', function() {
-
+      window.location ='/';
       var projectHTML = '<ul id="resultado">';
       $.each(data.data, function(i, item) {
         projectHTML += '<li>';
@@ -166,8 +173,8 @@ $.getJSON("/books-schema.json", function(data) {
 
 
 
-    $('#idioma li#1').on('click', function() {
-
+    $('#ingl-s').on('click', function() {
+      window.location.hash='/ingles';
       var projectHTML = '<ul id="resultado">';
       var libros_idioma = filtrar_por_idiomas(data.data, 1);
       $.each(libros_idioma, function(i, item) {
@@ -184,8 +191,8 @@ $.getJSON("/books-schema.json", function(data) {
     });
 
 
-    $('#idioma li#2').on('click', function() {
-
+    $('#espa-ol').on('click', function() {
+      window.location.hash='/espanol';
       var projectHTML = '<ul id="resultado">';
       var libros_idioma = filtrar_por_idiomas(data.data, 2);
       $.each(libros_idioma, function(i, item) {
@@ -202,8 +209,8 @@ $.getJSON("/books-schema.json", function(data) {
     });
 
 
-    $('#idioma li#3').on('click', function() {
-
+    $('#portug-s').on('click', function() {
+      window.location.hash='/portugues';
       var projectHTML = '<ul id="resultado">';
       var libros_idioma = filtrar_por_idiomas(data.data, 3);
       $.each(libros_idioma, function(i, item) {
@@ -224,8 +231,8 @@ $.getJSON("/books-schema.json", function(data) {
 
       /* FILTRO MODE */ 
 
-      $('#presentacion li#1').on('click', function() {
-
+      $('#impreso').on('click', function() {
+      window.location.hash='/impreso';
       var projectHTML = '<ul id="resultado">';
       var libros_edicion = filtrar_por_edicion(data.data, 1);
       $.each(libros_edicion, function(i, item) {
@@ -241,8 +248,8 @@ $.getJSON("/books-schema.json", function(data) {
 
     });
 
-      $('#presentacion li#2').on('click', function() {
-
+      $('#digital').on('click', function() {
+      window.location.hash='/digital';
       var projectHTML = '<ul id="resultado">';
       var libros_edicion = filtrar_por_edicion(data.data, 2);
       $.each(libros_edicion, function(i, item) {
@@ -259,8 +266,8 @@ $.getJSON("/books-schema.json", function(data) {
     });
 
 
-      $('#presentacion li#3').on('click', function() {
-
+      $('#impreso-y-digital').on('click', function() {
+      window.location.hash='/impreso-y-digital';
       var projectHTML = '<ul id="resultado">';
       var libros_edicion = filtrar_por_edicion(data.data, 3);
       $.each(libros_edicion, function(i, item) {
