@@ -76,14 +76,20 @@ function filtrar_por_edicion(libros,edition) {
 }
 
 
+var selector = 'aside li';
+
+
 $.getJSON("/books-schema.json", function(data) {
 
       /* FILTRO POR CATEGORIA */
-    $('#cTodos').on('click', function() {
 
-      window.location ='/';
+    $('#cTodos').on('click', function() {
+      history.replaceState({}, null, '/');
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       $.each(data.data, function(i, item) {
+
         projectHTML += '<li>';
         projectHTML += '<span class="image"><img src=' + item.image + '/></span>';
         projectHTML += '<span class="title">'+'<h3>' + item.title+ '</h3>'+'</span>';
@@ -100,6 +106,8 @@ $.getJSON("/books-schema.json", function(data) {
 
     $('#terror').on('click', function() {
       window.location.hash='/terror';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var peliculas_de_horror = filtrar_por_categoria(data.data,'horror');
       $.each(peliculas_de_horror, function(i, item) {
@@ -117,6 +125,8 @@ $.getJSON("/books-schema.json", function(data) {
 
     $('#comedia').on('click', function() {
       window.location.hash='/comedia';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var peliculas_de_comedia = filtrar_por_categoria(data.data,'comedy');
       $.each(peliculas_de_comedia, function(i, item) {
@@ -134,6 +144,8 @@ $.getJSON("/books-schema.json", function(data) {
 
     $('#drama').on('click', function() {
       window.location.hash='/drama';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var peliculas_de_drama = filtrar_por_categoria(data.data,'drama');
       $.each(peliculas_de_drama, function(i, item) {
@@ -156,7 +168,9 @@ $.getJSON("/books-schema.json", function(data) {
 
 
      $('#iTodos').on('click', function() {
-      window.location ='/';
+      history.replaceState({}, null, '/');
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       $.each(data.data, function(i, item) {
         projectHTML += '<li>';
@@ -175,6 +189,8 @@ $.getJSON("/books-schema.json", function(data) {
 
     $('#ingl-s').on('click', function() {
       window.location.hash='/ingles';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var libros_idioma = filtrar_por_idiomas(data.data, 1);
       $.each(libros_idioma, function(i, item) {
@@ -193,6 +209,8 @@ $.getJSON("/books-schema.json", function(data) {
 
     $('#espa-ol').on('click', function() {
       window.location.hash='/espanol';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var libros_idioma = filtrar_por_idiomas(data.data, 2);
       $.each(libros_idioma, function(i, item) {
@@ -211,6 +229,8 @@ $.getJSON("/books-schema.json", function(data) {
 
     $('#portug-s').on('click', function() {
       window.location.hash='/portugues';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var libros_idioma = filtrar_por_idiomas(data.data, 3);
       $.each(libros_idioma, function(i, item) {
@@ -233,6 +253,8 @@ $.getJSON("/books-schema.json", function(data) {
 
       $('#impreso').on('click', function() {
       window.location.hash='/impreso';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var libros_edicion = filtrar_por_edicion(data.data, 1);
       $.each(libros_edicion, function(i, item) {
@@ -250,6 +272,8 @@ $.getJSON("/books-schema.json", function(data) {
 
       $('#digital').on('click', function() {
       window.location.hash='/digital';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var libros_edicion = filtrar_por_edicion(data.data, 2);
       $.each(libros_edicion, function(i, item) {
@@ -268,6 +292,8 @@ $.getJSON("/books-schema.json", function(data) {
 
       $('#impreso-y-digital').on('click', function() {
       window.location.hash='/impreso-y-digital';
+      $(selector).removeClass('active');
+      $(this).addClass('active');
       var projectHTML = '<ul id="resultado">';
       var libros_edicion = filtrar_por_edicion(data.data, 3);
       $.each(libros_edicion, function(i, item) {
