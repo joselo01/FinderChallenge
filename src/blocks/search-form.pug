@@ -1,4 +1,6 @@
-.search-form 
-    input(type='search' name='search' id='search' onkeypress="return validarn(event)" required)
-    input(type='submit' name='btnSearch' id='btnSearch' value='Buscar')
-    a(href="#") Guardar búsqueda
+.search-form
+	form.form
+		input(type='search' name='search' id='search' class="search awesomplete" required)
+		input(type='button' name='btnSearch' id='btnSearch' value='Buscar')
+		span#mensaje
+

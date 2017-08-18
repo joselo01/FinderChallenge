@@ -1,9 +1,8 @@
 var gulp = require("gulp");
-var jquery = require('gulp-jquery');
 var pug = require("gulp-pug");
 var stylus = require("gulp-stylus");
 var rupture = require("rupture");
-var browserSync = require("browser-sync").create();
+var browserSync = require("browser-sync");
 
 var pathsView = [
     "src/index.pug",
@@ -60,8 +59,7 @@ var taskStylusSelf = function(){
         .pipe(stylus({
             use:[rupture()]
         }))
-        .pipe(gulp.dest("./public/styles"))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest("./public/styles"));
 };
 
 gulp.task("styles", function(){
@@ -109,17 +107,6 @@ gulp.task("watch", function(){
     gulp.watch("./public/*.*").on("change", browserSync.reload);
     gulp.watch("./public/**/*.*").on("change", browserSync.reload);
 });
-
-gulp.task('jquery', function () {
-    return gulp.src('./node_modules/jquery-custom/jquery.1/src')
-        .pipe(jquery({
-            flags: ['-deprecated', '-event/alias', '-ajax/script', '-ajax/jsonp', '-exports/global']
-        }))
-        .pipe(gulp.dest('./public/vendor/'));
-    // creates ./public/vendor/jquery.custom.js
-});
-
-
 
 gulp.task("ServerBrowserSync", function(){
     browserSync.init({
