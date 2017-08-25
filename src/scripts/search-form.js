@@ -14,19 +14,28 @@ function Cargardata(count) {
     $.getJSON('/books-schema.json', function(data) {
         var output = '<ul id="resultado">';
         var dataToShow = data.data.slice(0, count);
-        $.each(dataToShow, function(i, item) {
-            if ((item.title.search(myExp) != -1) || (item.teaser.search(myExp) != -1)) {
-                output += '<li>';
-                output += '<span class="image"><img src=' + item.image + '/></span>';
-                output += '<span class="title">' + '<h3>' + item.title + '</h3>' + '</span>';
-                output += '<span class="description">' + '<p>' + item.teaser + '</p>' + '</span>';
-                output += '</li>';
-            }
-        });
+        if (dataToShow.length == 0) {
+            return false;
+        } else {
+            $.each(dataToShow, function(i, item) {
+                if ((item.title.search(myExp) != -1) || (item.teaser.search(myExp) != -1)) {
+                    $("#mensaje").text("");
+                    output += '<li>';
+                    output += '<span class="image"><img src=' + item.image + '/></span>';
+                    output += '<span class="title">' + '<h3>' + item.title + '</h3>' + '</span>';
+                    output += '<span class="description">' + '<p>' + item.teaser + '</p>' + '</span>';
+                    output += '</li>';
+
+
+
+                }
+
+            });
+        }
         output += '</ul>';
         $('content').html(output);
-    });
 
+    });
 }
 
 /*CARGANDO 9 ITEMS*/
@@ -38,21 +47,30 @@ $(document).ready(function() {
 /*BOTÓN BUSCAR Y ENTER INPUT*/
 
 $('#btnSearch').click(function() {
+    $("#mensaje").text("No se encontrron resultados");
     Cargardata();
+    return false;
+
 });
+
 
 $('#search').keypress(function(e) {
     var keycode = (e.keyCode ? e.keyCode : e.which);
     if (keycode == '13') {
         if ($(this).val().length > 2) {
             $("#mensaje").text("");
-            Cargardata();
-            return false;
+            if ($(Cargardata).length > 0) {
+                $("#mensaje").text("No se encontrron resultados");
+                Cargardata();
+                return false;
+            }
+
         } else {
-            $("#mensaje").text("Ingrese mínimo tres caracteres");
+            $("#mensaje").text("El campo debe tener como mínimo 3 caracteres");
             return false;
         }
     }
+
 });
 
 /*valida solo textos*/
